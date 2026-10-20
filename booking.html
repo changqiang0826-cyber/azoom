@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Car | AZoom</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="logo" href="index.html"><img src="images/logo.png" alt="AZoom logo"></a>
+    <nav class="menu">
+      <a href="index.html">Home</a>
+      <a href="cars.html">Cars</a>
+      <a href="booking.html">Book</a>
+      <a href="orders.html">My Orders</a>
+      <a href="locations.html">Locations</a>
+      <a href="login.html" id="auth-link">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section narrow">
+      <h2>Book Your Car</h2>
+
+      <form id="booking-form" class="form">
+
+        <h3>1. Your Trip</h3>
+
+        <label for="car">Car</label>
+        <select id="car" name="car" required></select>
+
+        <div class="row">
+          <div>
+            <label for="pickup-store">Pick-up Store</label>
+            <select id="pickup-store" name="pickupStore" required>
+              <option value="">-- Choose a store --</option>
+              <option value="Changi Airport">Changi Airport</option>
+              <option value="Woodlands Checkpoint">Woodlands Checkpoint</option>
+            </select>
+          </div>
+          <div>
+            <label for="return-point">Return Car Park</label>
+            <select id="return-point" name="returnPoint" required>
+              <option value="">-- Choose a car park --</option>
+              <option value="Jewel Changi Airport">Jewel Changi Airport</option>
+              <option value="Woodlands Checkpoint">Woodlands Checkpoint</option>
+              <option value="Marina Bay Sands">Marina Bay Sands</option>
+              <option value="Resorts World Sentosa">Resorts World Sentosa</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="start-date">Pick-up Date</label>
+            <input type="date" id="start-date" name="startDate" required>
+          </div>
+          <div>
+            <label for="end-date">Return Date</label>
+            <input type="date" id="end-date" name="endDate" required>
+          </div>
+        </div>
+
+        <h3>2. Driver Details</h3>
+
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="fullName" required>
+
+        <div class="row">
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="licence-country">Licence Issued In</label>
+            <input type="text" id="licence-country" name="licenceCountry" placeholder="e.g. China" required>
+          </div>
+        </div>
+
+        <h3>3. Payment</h3>
+
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+
+        <div class="row">
+          <div>
+            <label for="card-expiry">Expiry (MM/YY)</label>
+            <input type="text" id="card-expiry" name="cardExpiry" placeholder="08/28" required>
+          </div>
+          <div>
+            <label for="card-cvv">CVV</label>
+            <input type="text" id="card-cvv" name="cardCvv" placeholder="123" required>
+          </div>
+        </div>
+
+        <p class="total">Total: <span id="total">S$0</span></p>
+
+        <button type="submit" class="btn">Confirm Booking</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h4>AZoom</h4>
+        <p>Electric car rental for visitors to Singapore.</p>
+      </div>
+      <div>
+        <h4>Stores</h4>
+        <p>Changi Airport T3, Arrival Hall</p>
+        <p>Woodlands Checkpoint</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>hello@azoom.sg</p>
+        <p>+65 6000 0000</p>
+      </div>
+    </div>
+    <p class="copy">&copy; 2026 AZoom. A student project for ISIT207.</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
