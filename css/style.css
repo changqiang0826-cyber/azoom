@@ -1,0 +1,465 @@
+/* ===== 全站颜色：白底、近黑文字、一个青绿强调色 ===== */
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --grey: #6b7280;
+  --line: #e5e7eb;
+  --accent: #111111;        /* 强调色：黑。只用在按钮、链接、价格 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== 顶栏：Logo 在左，导航在右 ===== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo img {
+  height: 56px;      /* 只定高度，宽度按原图比例自动算 */
+  display: block;
+}
+
+.menu {
+  display: flex;
+  gap: 24px;
+}
+
+.menu a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.menu a:hover {
+  text-decoration: underline;   /* 强调色和文字同为黑色，悬停改用下划线提示 */
+}
+
+/* ===== 首页大图区（Hero） ===== */
+.hero {
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;     /* 竖着排：标题、副标题、按钮 */
+  justify-content: flex-start;/* 主方向（竖）：靠上 */
+  align-items: flex-start;    /* 另一个方向（横）：靠左 */
+  text-align: left;
+  padding: 64px 6%;           /* 文字放在左上角那片天空里，不挡住车 */
+  color: #ffffff;
+  background-color: #334155;   /* 图片加载前的底色 */
+  /* 照片上盖一层半透明黑色，白字才看得清 */
+  /* 左边加深、右边透明：文字那一侧看得清，车那一侧保持原样 */
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url("../images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero h1 {
+  font-size: 44px;
+  max-width: 520px;
+  margin: 0 0 12px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin: 0 0 28px;
+  max-width: 420px;
+}
+
+/* 深色背景上的按钮：反过来用白底黑字 */
+.hero .btn {
+  background: #ffffff;
+  color: var(--accent);
+}
+
+/* ===== 按钮：全站唯一用强调色当底色的地方 ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--accent);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* ===== 普通内容区块 ===== */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 16px;
+}
+
+.section h2 {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0 32px;
+}
+
+/* ===== 三个卖点：用 Grid 排成三列 ===== */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 三列，每列一样宽 */
+  gap: 24px;
+}
+
+.feature {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.feature h3 {
+  margin: 0 0 8px;
+  color: var(--accent);
+}
+
+.feature p {
+  margin: 0;
+  color: var(--grey);
+  line-height: 1.6;
+}
+
+/* ===== 车辆页：卡片用 Grid 排成三列 ===== */
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.car-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;            /* 图片的直角不超出圆角 */
+}
+
+.car-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;           /* 图片铺满不变形 */
+  background: #e5e7eb;         /* 图片还没放时显示浅灰 */
+  display: block;
+}
+
+.car-info {
+  padding: 20px;
+}
+
+.car-info h3 {
+  margin: 4px 0 8px;
+}
+
+.car-info p {
+  margin: 0 0 6px;
+  color: var(--grey);
+}
+
+.tier {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.car-info .price {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--accent);
+  margin-top: 12px;
+}
+
+.car-info .sub-price {
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* ===== 订车表单 ===== */
+.narrow {
+  max-width: 640px;
+}
+
+.form h3 {
+  margin: 32px 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.form label {
+  display: block;          /* 标签单独占一行，输入框在它下面 */
+  margin: 16px 0 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form input,
+.form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #ffffff;
+}
+
+.form input:focus,
+.form select:focus {
+  outline: 2px solid var(--accent);   /* 正在填的那一栏加黑框 */
+}
+
+/* 两个输入框并排：用 Grid 分两列 */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.total {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 32px 0 16px;
+}
+
+.form .btn {
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ===== 我的订单 ===== */
+.order {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.order-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order h3 {
+  margin: 0;
+}
+
+.order p {
+  margin: 6px 0;
+  color: var(--grey);
+}
+
+.order .btn {
+  margin-top: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #f3f4f6;
+}
+
+.hint {
+  color: var(--grey);
+}
+
+/* ===== 登录 / 注册 ===== */
+.small {
+  max-width: 420px;
+}
+
+.error {
+  color: #b91c1c;
+  min-height: 20px;
+  margin: 12px 0 0;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--grey);
+}
+
+.switch a {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.hello {
+  color: var(--grey);
+}
+
+/* ===== 员工页 ===== */
+.inspect-form label {
+  margin-top: 12px;
+}
+
+.tablewrap {
+  overflow-x: auto;       /* 手机上表格太宽时可以左右滑 */
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-table th {
+  background: #f9fafb;
+}
+
+/* ===== 手机和平板适配（媒体查询） ===== */
+
+/* 屏幕宽度不超过 900px（平板）：三列改两列 */
+@media (max-width: 900px) {
+  .car-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 屏幕宽度不超过 600px（手机）：全部改成一列 */
+@media (max-width: 600px) {
+  .topbar {
+    flex-direction: column;     /* Logo 和导航上下排 */
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .menu {
+    flex-wrap: wrap;            /* 链接太多一行放不下就换行 */
+    justify-content: center;
+    gap: 12px 18px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .features,
+  .car-grid,
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 客户评价 ===== */
+.review {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.review p {
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.stars {
+  letter-spacing: 2px;
+}
+
+.review .who {
+  color: var(--grey);
+  margin: 0;
+}
+
+/* ===== 门店与还车点 ===== */
+.loc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.loc-grid.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.loc {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.loc h3 {
+  margin: 4px 0 8px;
+}
+
+.loc p {
+  margin: 4px 0;
+}
+
+.center {
+  text-align: center;
+  margin: -16px 0 32px;
+}
+
+/* ===== 页脚：三列 ===== */
+.site-footer {
+  background: #111111;
+  color: #d1d5db;
+  padding: 48px 6% 24px;
+  margin-top: 40px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;   /* 第一列占两份，后两列各一份 */
+  gap: 32px;
+}
+
+.site-footer h4 {
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+
+.site-footer p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.site-footer .copy {
+  border-top: 1px solid #374151;
+  margin-top: 32px;
+  padding-top: 16px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+@media (max-width: 900px) {
+  .loc-grid.four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .loc-grid,
+  .loc-grid.four,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
