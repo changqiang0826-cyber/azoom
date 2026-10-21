@@ -1,15 +1,16 @@
-// ===== 注册 =====
 document.getElementById("register-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const name = document.getElementById("reg-name").value;
+  const name = document.getElementById("reg-name").value.trim();
   const email = document.getElementById("reg-email").value.toLowerCase();
   const password = document.getElementById("reg-password").value;
   const errorText = document.getElementById("reg-error");
+  const users = loadData("azoomUsers");
 
-  const users = loadUsers();
-
-  // 同一个邮箱不能注册两次
+  if (password.length < 6) {
+    errorText.textContent = "Password must be at least 6 characters.";
+    return;
+  }
   if (users.find(u => u.email === email) || email === STAFF.email) {
     errorText.textContent = "This email is already registered.";
     return;
@@ -17,8 +18,12 @@ document.getElementById("register-form").addEventListener("submit", function (ev
 
   const newUser = { name: name, email: email, password: password, role: "customer" };
   users.push(newUser);
-  saveUsers(users);
+  saveData("azoomUsers", users);
+  setCurrentUser(newUser);
 
-  setCurrentUser(newUser);            // 注册完直接算登录
-  window.location.href = "cars.html";
+  if (localStorage.getItem("azoomSelectedCar")) {
+    window.location.href = "booking.html";
+  } else {
+    window.location.href = "cars.html";
+  }
 });

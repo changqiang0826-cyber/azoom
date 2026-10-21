@@ -1,7 +1,5 @@
-// ===== 我的订单 =====
 const orderList = document.getElementById("order-list");
 
-// 每种状态下，客人能做的下一步
 function nextAction(order) {
   if (order.status === "Booked") {
     return `<button class="btn" onclick="updateStatus(${order.id}, 'Picked Up')">I Have Picked Up the Car</button>`;
@@ -23,17 +21,19 @@ function renderOrders() {
     return;
   }
 
-  // 只显示自己的订单
-  const bookings = loadBookings().filter(b => b.userEmail === currentUser.email);
-
+  const bookings = loadData("azoomBookings").filter(b => b.userEmail === currentUser.email);
   if (bookings.length === 0) {
     orderList.innerHTML = `<p class="hint">You have no bookings yet. <a href="cars.html">Browse our cars</a></p>`;
     return;
   }
 
   let html = "";
-  for (let i = bookings.length - 1; i >= 0; i--) {        // 倒着循环：最新的订单排最上面
+  for (let i = bookings.length - 1; i >= 0; i--) {
     const order = bookings[i];
+    let damage = `S$${order.damageCost}`;
+    if (order.damageNote !== "") {
+      damage += ` (${order.damageNote})`;
+    }
     html += `
       <div class="order">
         <div class="order-head">
@@ -42,7 +42,7 @@ function renderOrders() {
         </div>
         <p>${order.startDate} → ${order.endDate}</p>
         <p>Pick up at <b>${order.pickupStore}</b>, return to <b>${order.returnPoint}</b></p>
-        <p>Rental: S$${order.rentalCost} · Damage: S$${order.damageCost}${order.damageNote ? " (" + order.damageNote + ")" : ""}</p>
+        <p>Rental: S$${order.rentalCost} · Damage: ${damage}</p>
         ${nextAction(order)}
       </div>
     `;
@@ -50,12 +50,11 @@ function renderOrders() {
   orderList.innerHTML = html;
 }
 
-// 改订单状态：找到那张订单 → 改 status → 存回去 → 重新显示
 function updateStatus(orderId, newStatus) {
-  const bookings = loadBookings();
+  const bookings = loadData("azoomBookings");
   const order = bookings.find(b => b.id === orderId);
   order.status = newStatus;
-  saveBookings(bookings);
+  saveData("azoomBookings", bookings);
   renderOrders();
 }
 

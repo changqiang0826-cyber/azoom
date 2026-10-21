@@ -1,46 +1,45 @@
-// ===== 员工页 =====
-
-// ---- 门卫：不是员工就送回登录页 ----
 const staffUser = getCurrentUser();
-if (!staffUser || staffUser.role !== "staff") {
-  window.location.href = "../login.html";
-}
 
-// 员工页在 admin 文件夹里，退出后要回上一层的首页
-function logout() {
-  localStorage.removeItem("azoomCurrentUser");
-  window.location.href = "../index.html";
-}
+const damageTypes = [
+  { label: "No damage", cost: 0 },
+  { label: "Minor scratch", cost: 150 },
+  { label: "Dent or broken light", cost: 400 },
+  { label: "Major damage", cost: 1200 }
+];
+const adminArea = document.getElementById("admin-area");
 
 function renderAdmin() {
-  const bookings = loadBookings();
-
-  // ---- 上半部分：已还车、等待验车的订单，每张一个验车表单 ----
+  const bookings = loadData("azoomBookings");
   const waiting = bookings.filter(b => b.status === "Returned");
+
+  let damageOptions = "";
+  for (let i = 0; i < damageTypes.length; i++) {
+    damageOptions += `<option value="${i}">${damageTypes[i].label} (S$${damageTypes[i].cost})</option>`;
+  }
+
   let cards = "";
   for (let i = 0; i < waiting.length; i++) {
     const b = waiting[i];
     cards += `
-      <div class="order">
+      <div class="order form">
         <div class="order-head">
           <h3>${b.carName}</h3>
           <span class="status">${b.returnPoint}</span>
         </div>
         <p>Customer: ${b.fullName} (${b.email}) · ${b.startDate} → ${b.endDate}</p>
-        <form class="form inspect-form" onsubmit="submitInspection(event, ${b.id})">
-          <label for="note-${b.id}">Damage found (leave empty if none)</label>
-          <input type="text" id="note-${b.id}" placeholder="e.g. Scratch on rear bumper">
-          <label for="cost-${b.id}">Repair charge (S$)</label>
-          <input type="number" id="cost-${b.id}" min="0" value="0" required>
-          <button type="submit" class="btn">Complete Inspection</button>
-        </form>
+        <label for="damage-${b.id}">Damage found</label>
+        <select id="damage-${b.id}">${damageOptions}</select>
+        <label for="note-${b.id}">Notes (optional)</label>
+        <input type="text" id="note-${b.id}" placeholder="e.g. Rear bumper, left side">
+        <button class="btn" onclick="submitInspection(${b.id})">Complete Inspection</button>
       </div>
     `;
   }
-  document.getElementById("inspect-list").innerHTML =
-    cards || `<p class="hint">No cars are waiting for inspection.</p>`;
+  if (cards === "") {
+    cards = `<p class="hint">No cars are waiting for inspection.</p>`;
+  }
+  document.getElementById("inspect-list").innerHTML = cards;
 
-  // ---- 下半部分：全部订单一览表 ----
   let rows = "";
   for (let i = bookings.length - 1; i >= 0; i--) {
     const b = bookings[i];
@@ -55,20 +54,27 @@ function renderAdmin() {
       </tr>
     `;
   }
-  document.getElementById("all-bookings").innerHTML =
-    rows || `<tr><td colspan="6">No bookings yet.</td></tr>`;
+  document.getElementById("all-bookings").innerHTML = rows;
 }
 
-// 员工提交验车结果：记下损坏情况和修理费，状态改成 Inspected
-function submitInspection(event, bookingId) {
-  event.preventDefault();
-  const bookings = loadBookings();
+function submitInspection(bookingId) {
+  const damage = damageTypes[document.getElementById(`damage-${bookingId}`).value];
+  const note = document.getElementById(`note-${bookingId}`).value.trim();
+
+  const bookings = loadData("azoomBookings");
   const b = bookings.find(x => x.id === bookingId);
-  b.damageNote = document.getElementById(`note-${bookingId}`).value;
-  b.damageCost = Number(document.getElementById(`cost-${bookingId}`).value);
+  b.damageNote = damage.label;
+  if (note !== "") {
+    b.damageNote += `, ${note}`;
+  }
+  b.damageCost = damage.cost;
   b.status = "Inspected";
-  saveBookings(bookings);
+  saveData("azoomBookings", bookings);
   renderAdmin();
 }
 
-renderAdmin();
+if (!staffUser || staffUser.role !== "staff") {
+  adminArea.innerHTML = `<section class="section narrow"><p class="hint">This page is for AZoom staff only. Please <a href="../login.html">log in</a> with a staff account.</p></section>`;
+} else {
+  renderAdmin();
+}

@@ -1,7 +1,6 @@
-// ===== 导航栏最右边：没登录显示 Login，登录了显示名字和 Logout =====
-const authLink = document.getElementById("auth-link");
+const authArea = document.getElementById("auth-area");
 const user = getCurrentUser();
 
 if (user) {
-  authLink.outerHTML = `<span class="hello">Hi, ${user.name}</span><a href="#" onclick="logout()">Logout</a>`;
+  authArea.innerHTML = `<span class="hello">Hi, ${user.name}</span> <a href="#" onclick="logout('index.html')">Logout</a>`;
 }
