@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AZoom | Electric Car Rental for Visitors</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,54 +17,92 @@
       <a href="booking.html">Book</a>
       <a href="orders.html">My Orders</a>
       <a href="locations.html">Locations</a>
-      <a href="login.html" id="auth-link">Login</a>
+      <span id="auth-area"><a href="login.html">Login</a></span>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Explore Singapore Your Way</h1>
-      <p>Electric cars ready at Changi Airport and Woodlands Checkpoint.</p>
+      <span class="eyebrow">Electric Car Rental · Singapore</span>
+      <h1>Explore Singapore<br>Your Way</h1>
+      <p>Pick up at Changi Airport or Woodlands Checkpoint. Return near the sights.</p>
+      <div class="hero-actions">
+        <a class="btn" href="booking.html">Book a Car</a>
+        <a class="btn btn-ghost" href="cars.html">View Our Cars</a>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div><b>2</b><span>Pick-up stores</span></div>
+      <div><b>4</b><span>Return car parks</span></div>
+      <div><b>7</b><span>Electric models</span></div>
+      <div><b>S$120</b><span>From, per day</span></div>
+    </section>
+
+    <section class="band">
+      <div class="section">
+        <span class="kicker">How it works</span>
+        <h2>From Arrival Hall to Open Road</h2>
+        <div class="steps">
+          <div class="step">
+            <span class="step-no">01</span>
+            <h3>Book Online</h3>
+            <p>Choose a car and dates. Pay securely by card.</p>
+          </div>
+          <div class="step">
+            <span class="step-no">02</span>
+            <h3>Pick Up</h3>
+            <p>Collect your car at Changi Airport or Woodlands Checkpoint.</p>
+          </div>
+          <div class="step">
+            <span class="step-no">03</span>
+            <h3>Drive &amp; Explore</h3>
+            <p>Marina Bay, Sentosa, Mandai — go wherever you like.</p>
+          </div>
+          <div class="step">
+            <span class="step-no">04</span>
+            <h3>Return Nearby</h3>
+            <p>Drop off at any of our four car parks. We inspect and send the final bill.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="kicker">Our fleet</span>
+      <h2>Popular with Visitors</h2>
+      <div class="car-grid" id="featured-cars"></div>
+      <p class="center-link"><a href="cars.html">See all 7 cars →</a></p>
+    </section>
+
+    <section class="band">
+      <div class="section">
+        <span class="kicker">Reviews</span>
+        <h2>What Visitors Say</h2>
+        <div class="reviews">
+          <div class="review">
+            <p>★★★★★</p>
+            <p>"Landed at Changi, picked up the car in 15 minutes and drove straight to our hotel. So easy."</p>
+            <div class="who"><span class="avatar">M</span>Mei, from Shanghai</div>
+          </div>
+          <div class="review">
+            <p>★★★★★</p>
+            <p>"We came over from Johor and returned the car at Sentosa. No need to drive back to the store."</p>
+            <div class="who"><span class="avatar">D</span>Daniel, from Kuala Lumpur</div>
+          </div>
+          <div class="review">
+            <p>★★★★☆</p>
+            <p>"The EV9 fit all six of us plus luggage. Weekly price was much cheaper than daily."</p>
+            <div class="who"><span class="avatar">S</span>The Sato family, from Osaka</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Ready to Explore Singapore?</h2>
+      <p>Book in two minutes. Rent longer, save more.</p>
       <a class="btn" href="booking.html">Book a Car</a>
-    </section>
-
-    <section class="section">
-      <h2>Why AZoom</h2>
-      <div class="features">
-        <div class="feature">
-          <h3>Pick Up Where You Land</h3>
-          <p>Our stores are at Changi Airport and Woodlands Checkpoint, right where visitors arrive.</p>
-        </div>
-        <div class="feature">
-          <h3>Return Near the Sights</h3>
-          <p>Drop the car at Marina Bay Sands, Sentosa, Jewel Changi or Woodlands.</p>
-        </div>
-        <div class="feature">
-          <h3>100% Electric</h3>
-          <p>Quiet, clean cars from economy to luxury, plus a 7-seater for families.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>What Visitors Say</h2>
-      <div class="features">
-        <div class="review">
-          <p class="stars">★★★★★</p>
-          <p>"Landed at Changi, picked up the car in 15 minutes and drove straight to our hotel. So easy."</p>
-          <p class="who">— Mei, from Shanghai</p>
-        </div>
-        <div class="review">
-          <p class="stars">★★★★★</p>
-          <p>"We came over from Johor and returned the car at Sentosa. No need to drive back to the store."</p>
-          <p class="who">— Daniel, from Kuala Lumpur</p>
-        </div>
-        <div class="review">
-          <p class="stars">★★★★☆</p>
-          <p>"The EV9 fit all six of us plus luggage. Weekly price was much cheaper than daily."</p>
-          <p class="who">— The Sato family, from Osaka</p>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -71,23 +110,39 @@
     <div class="footer-grid">
       <div>
         <h4>AZoom</h4>
-        <p>Electric car rental for visitors to Singapore.</p>
+        <p>Electric car rental for visitors to Singapore. Pick up where you land, return near the sights.</p>
+        <div class="social">
+          <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+          <a href="https://x.com/" target="_blank">X</a>
+          <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+          <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <p><a href="cars.html">Our Cars</a></p>
+        <p><a href="booking.html">Book a Car</a></p>
+        <p><a href="locations.html">Stores &amp; Car Parks</a></p>
+        <p><a href="orders.html">My Orders</a></p>
       </div>
       <div>
         <h4>Stores</h4>
         <p>Changi Airport T3, Arrival Hall</p>
         <p>Woodlands Checkpoint</p>
+        <p>Open daily from 6:00 am</p>
       </div>
       <div>
         <h4>Contact</h4>
-        <p>hello@azoom.sg</p>
-        <p>+65 6000 0000</p>
+        <p><a href="mailto:hello@azoom.sg">hello@azoom.sg</a></p>
+        <p><a href="tel:+6560000000">+65 6000 0000</a></p>
+        <p>24-hour roadside help</p>
       </div>
     </div>
-    <p class="copy">&copy; 2026 AZoom. A student project for ISIT207.</p>
+    <p class="copy">© 2026 AZoom. All rights reserved.</p>
   </footer>
 
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>
