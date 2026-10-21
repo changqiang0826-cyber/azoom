@@ -1,140 +1,200 @@
-/* ===== 全站颜色：白底、近黑文字、一个青绿强调色 ===== */
-:root {
-  --bg: #ffffff;
-  --text: #1a1a1a;
-  --grey: #6b7280;
-  --line: #e5e7eb;
-  --accent: #111111;        /* 强调色：黑。只用在按钮、链接、价格 */
-}
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: "Manrope", Arial, sans-serif;
 }
 
-/* ===== 顶栏：Logo 在左，导航在右 ===== */
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 32px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .logo img {
-  height: 56px;      /* 只定高度，宽度按原图比例自动算 */
+  height: 56px;
   display: block;
 }
 
 .menu {
   display: flex;
+  align-items: center;
   gap: 24px;
 }
 
 .menu a {
-  color: var(--text);
+  color: #1a1a1a;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .menu a:hover {
-  text-decoration: underline;   /* 强调色和文字同为黑色，悬停改用下划线提示 */
+  text-decoration: underline;
 }
 
-/* ===== 首页大图区（Hero） ===== */
-.hero {
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;     /* 竖着排：标题、副标题、按钮 */
-  justify-content: flex-start;/* 主方向（竖）：靠上 */
-  align-items: flex-start;    /* 另一个方向（横）：靠左 */
-  text-align: left;
-  padding: 64px 6%;           /* 文字放在左上角那片天空里，不挡住车 */
-  color: #ffffff;
-  background-color: #334155;   /* 图片加载前的底色 */
-  /* 照片上盖一层半透明黑色，白字才看得清 */
-  /* 左边加深、右边透明：文字那一侧看得清，车那一侧保持原样 */
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)), url("../images/hero.jpg");
-  background-size: cover;
-  background-position: center;
+.hello {
+  color: #6b7280;
 }
 
-.hero h1 {
-  font-size: 44px;
-  max-width: 520px;
-  margin: 0 0 12px;
-}
-
-.hero p {
-  font-size: 18px;
-  margin: 0 0 28px;
-  max-width: 420px;
-}
-
-/* 深色背景上的按钮：反过来用白底黑字 */
-.hero .btn {
-  background: #ffffff;
-  color: var(--accent);
-}
-
-/* ===== 按钮：全站唯一用强调色当底色的地方 ===== */
 .btn {
   display: inline-block;
-  padding: 12px 28px;
-  background: var(--accent);
+  padding: 14px 30px;
+  background: #111111;
   color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
   text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
+  cursor: pointer;
 }
 
 .btn:hover {
   opacity: 0.8;
 }
 
-/* ===== 普通内容区块 ===== */
+.hint {
+  color: #6b7280;
+}
+
+.hero {
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 80px 6%;
+  color: #ffffff;
+  background-color: #1e293b;
+  background-image: url("../images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero .eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 460px;
+  margin: 0 0 32px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hero .btn {
+  background: #ffffff;
+  color: #111111;
+}
+
+.hero .btn.btn-ghost {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
 .section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 56px 16px;
+  padding: 64px 16px;
 }
 
 .section h2 {
   text-align: center;
-  font-size: 30px;
-  margin: 0 0 32px;
+  font-size: 34px;
+  font-weight: 800;
+  margin: 0 0 40px;
 }
 
-/* ===== 三个卖点：用 Grid 排成三列 ===== */
-.features {
+.narrow {
+  max-width: 640px;
+}
+
+.small {
+  max-width: 420px;
+}
+
+.band {
+  background: #f5f5f4;
+}
+
+.kicker {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);   /* 三列，每列一样宽 */
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.feature {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 24px;
+.stats div {
+  padding: 36px 16px;
+  text-align: center;
 }
 
-.feature h3 {
-  margin: 0 0 8px;
-  color: var(--accent);
+.stats b {
+  display: block;
+  font-size: 36px;
+  font-weight: 800;
 }
 
-.feature p {
+.stats span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.step-no {
+  font-size: 44px;
+  font-weight: 800;
+  color: #d6d3d1;
+}
+
+.step h3 {
+  margin: 12px 0 8px;
+}
+
+.step p {
   margin: 0;
-  color: var(--grey);
+  color: #6b7280;
   line-height: 1.6;
 }
 
-/* ===== 车辆页：卡片用 Grid 排成三列 ===== */
 .car-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -142,17 +202,17 @@ body {
 }
 
 .car-card {
-  border: 1px solid var(--line);
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
-  overflow: hidden;            /* 图片的直角不超出圆角 */
+  overflow: hidden;
 }
 
 .car-card img {
   width: 100%;
   height: 180px;
-  object-fit: cover;           /* 图片铺满不变形 */
-  background: #e5e7eb;         /* 图片还没放时显示浅灰 */
+  object-fit: cover;
   display: block;
+  background: #e5e7eb;
 }
 
 .car-info {
@@ -165,19 +225,18 @@ body {
 
 .car-info p {
   margin: 0 0 6px;
-  color: var(--grey);
+  color: #6b7280;
 }
 
 .tier {
   font-size: 13px;
-  color: var(--accent);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .car-info .price {
   font-size: 24px;
-  font-weight: bold;
-  color: var(--accent);
+  font-weight: 700;
+  color: #111111;
   margin-top: 12px;
 }
 
@@ -186,22 +245,87 @@ body {
   margin-bottom: 16px;
 }
 
-/* ===== 订车表单 ===== */
-.narrow {
-  max-width: 640px;
+.center-link {
+  text-align: center;
+  margin: 32px 0 0;
+}
+
+.center-link a {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.review p {
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #111111;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.cta {
+  background: #111111;
+  color: #ffffff;
+  text-align: center;
+  padding: 72px 16px;
+}
+
+.cta h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+
+.cta p {
+  margin: 0 0 28px;
+  color: #d1d5db;
+}
+
+.cta .btn {
+  background: #ffffff;
+  color: #111111;
 }
 
 .form h3 {
   margin: 32px 0 8px;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .form label {
-  display: block;          /* 标签单独占一行，输入框在它下面 */
+  display: block;
   margin: 16px 0 6px;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .form input,
@@ -210,16 +334,21 @@ body {
   padding: 10px 12px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
+  font-family: inherit;
   font-size: 15px;
   background: #ffffff;
 }
 
 .form input:focus,
 .form select:focus {
-  outline: 2px solid var(--accent);   /* 正在填的那一栏加黑框 */
+  outline: 2px solid #111111;
 }
 
-/* 两个输入框并排：用 Grid 分两列 */
+.form .btn {
+  width: 100%;
+  margin-top: 16px;
+}
+
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -228,20 +357,28 @@ body {
 
 .total {
   font-size: 22px;
-  font-weight: bold;
-  margin: 32px 0 16px;
+  font-weight: 700;
+  margin: 32px 0 0;
 }
 
-.form .btn {
-  width: 100%;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
+.error {
+  color: #b91c1c;
+  margin: 12px 0 0;
 }
 
-/* ===== 我的订单 ===== */
+.switch {
+  text-align: center;
+  margin-top: 20px;
+  color: #6b7280;
+}
+
+.switch a {
+  color: #111111;
+  font-weight: 700;
+}
+
 .order {
-  border: 1px solid var(--line);
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 20px 24px;
   margin-bottom: 16px;
@@ -259,136 +396,21 @@ body {
 
 .order p {
   margin: 6px 0;
-  color: var(--grey);
+  color: #6b7280;
 }
 
 .order .btn {
   margin-top: 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
 }
 
 .status {
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 700;
   padding: 4px 10px;
   border-radius: 20px;
   background: #f3f4f6;
 }
 
-.hint {
-  color: var(--grey);
-}
-
-/* ===== 登录 / 注册 ===== */
-.small {
-  max-width: 420px;
-}
-
-.error {
-  color: #b91c1c;
-  min-height: 20px;
-  margin: 12px 0 0;
-}
-
-.switch {
-  text-align: center;
-  margin-top: 20px;
-  color: var(--grey);
-}
-
-.switch a {
-  color: var(--accent);
-  font-weight: bold;
-}
-
-.hello {
-  color: var(--grey);
-}
-
-/* ===== 员工页 ===== */
-.inspect-form label {
-  margin-top: 12px;
-}
-
-.tablewrap {
-  overflow-x: auto;       /* 手机上表格太宽时可以左右滑 */
-}
-
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-
-.admin-table th,
-.admin-table td {
-  text-align: left;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--line);
-}
-
-.admin-table th {
-  background: #f9fafb;
-}
-
-/* ===== 手机和平板适配（媒体查询） ===== */
-
-/* 屏幕宽度不超过 900px（平板）：三列改两列 */
-@media (max-width: 900px) {
-  .car-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* 屏幕宽度不超过 600px（手机）：全部改成一列 */
-@media (max-width: 600px) {
-  .topbar {
-    flex-direction: column;     /* Logo 和导航上下排 */
-    gap: 12px;
-    padding: 12px 16px;
-  }
-
-  .menu {
-    flex-wrap: wrap;            /* 链接太多一行放不下就换行 */
-    justify-content: center;
-    gap: 12px 18px;
-  }
-
-  .hero h1 {
-    font-size: 30px;
-  }
-
-  .features,
-  .car-grid,
-  .row {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ===== 客户评价 ===== */
-.review {
-  background: #f9fafb;
-  border-radius: 8px;
-  padding: 24px;
-}
-
-.review p {
-  margin: 0 0 12px;
-  line-height: 1.6;
-}
-
-.stars {
-  letter-spacing: 2px;
-}
-
-.review .who {
-  color: var(--grey);
-  margin: 0;
-}
-
-/* ===== 门店与还车点 ===== */
 .loc-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -400,7 +422,7 @@ body {
 }
 
 .loc {
-  border: 1px solid var(--line);
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 24px;
 }
@@ -413,22 +435,42 @@ body {
   margin: 4px 0;
 }
 
-.center {
+.intro {
   text-align: center;
   margin: -16px 0 32px;
 }
 
-/* ===== 页脚：三列 ===== */
+.table-box {
+  overflow: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table th {
+  background: #f9fafb;
+}
+
 .site-footer {
   background: #111111;
   color: #d1d5db;
   padding: 48px 6% 24px;
-  margin-top: 40px;
+  border-top: 1px solid #262626;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;   /* 第一列占两份，后两列各一份 */
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 32px;
 }
 
@@ -442,6 +484,30 @@ body {
   font-size: 14px;
 }
 
+.site-footer a {
+  color: #d1d5db;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.social a {
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
 .site-footer .copy {
   border-top: 1px solid #374151;
   margin-top: 32px;
@@ -451,12 +517,44 @@ body {
 }
 
 @media (max-width: 900px) {
-  .loc-grid.four {
+  .hero {
+    min-height: 480px;
+  }
+
+  .stats,
+  .steps,
+  .car-grid,
+  .loc-grid.four,
+  .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
+  .topbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 18px;
+  }
+
+  .hero {
+    padding: 48px 6%;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .steps,
+  .car-grid,
+  .reviews,
+  .row,
   .loc-grid,
   .loc-grid.four,
   .footer-grid {
