@@ -45,7 +45,7 @@ body {
 .btn {
   display: inline-block;
   padding: 14px 30px;
-  background: #111111;
+  background-color: #111111;
   color: #ffffff;
   border: none;
   border-radius: 999px;
@@ -54,10 +54,11 @@ body {
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  opacity: 0.8;
+  background-color: #374151;
 }
 
 .hint {
@@ -65,7 +66,7 @@ body {
 }
 
 .hero {
-  min-height: 640px;
+  height: 640px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -106,14 +107,22 @@ body {
 }
 
 .hero .btn {
-  background: #ffffff;
+  background-color: #ffffff;
   color: #111111;
 }
 
+.hero .btn:hover {
+  background-color: #e5e7eb;
+}
+
 .hero .btn.btn-ghost {
-  background: transparent;
+  background-color: transparent;
   color: #ffffff;
   border: 1px solid #ffffff;
+}
+
+.hero .btn.btn-ghost:hover {
+  background-color: #374151;
 }
 
 .section {
@@ -205,6 +214,11 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
 }
 
 .car-card img {
@@ -265,6 +279,11 @@ body {
   background: #ffffff;
   border-radius: 12px;
   padding: 28px;
+  transition: transform 0.3s ease;
+}
+
+.review:hover {
+  transform: translateY(-5px);
 }
 
 .review p {
@@ -311,8 +330,12 @@ body {
 }
 
 .cta .btn {
-  background: #ffffff;
+  background-color: #ffffff;
   color: #111111;
+}
+
+.cta .btn:hover {
+  background-color: #e5e7eb;
 }
 
 .form h3 {
@@ -425,6 +448,11 @@ body {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 24px;
+  transition: transform 0.3s ease;
+}
+
+.loc:hover {
+  transform: translateY(-5px);
 }
 
 .loc h3 {
@@ -465,16 +493,18 @@ body {
   background: #111111;
   color: #d1d5db;
   padding: 48px 6% 24px;
-  border-top: 1px solid #262626;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #374151;
 }
 
-.site-footer h4 {
+.site-footer h3 {
+  font-size: 16px;
   color: #ffffff;
   margin: 0 0 12px;
 }
@@ -509,16 +539,14 @@ body {
 }
 
 .site-footer .copy {
-  border-top: 1px solid #374151;
-  margin-top: 32px;
-  padding-top: 16px;
+  margin-top: 16px;
   font-size: 13px;
   color: #9ca3af;
 }
 
 @media (max-width: 900px) {
   .hero {
-    min-height: 480px;
+    height: 480px;
   }
 
   .stats,
@@ -560,4 +588,13 @@ body {
   .footer-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.map {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 12px;
+  display: block;
 }
