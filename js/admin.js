@@ -26,7 +26,7 @@ function renderAdmin() {
           <h3>${b.carName}</h3>
           <span class="status">${b.returnPoint}</span>
         </div>
-        <p>Customer: ${b.fullName} (${b.email}) · ${b.startDate} → ${b.endDate}</p>
+        <p>Customer: ${safe(b.fullName)} (${safe(b.email)}) · ${b.startDate} → ${b.endDate}</p>
         <label for="damage-${b.id}">Damage found</label>
         <select id="damage-${b.id}">${damageOptions}</select>
         <label for="note-${b.id}">Notes (optional)</label>
@@ -45,7 +45,7 @@ function renderAdmin() {
     const b = bookings[i];
     rows += `
       <tr>
-        <td>${b.fullName}</td>
+        <td>${safe(b.fullName)}</td>
         <td>${b.carName}</td>
         <td>${b.startDate} → ${b.endDate}</td>
         <td>${b.returnPoint}</td>

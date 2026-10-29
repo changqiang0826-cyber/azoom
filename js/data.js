@@ -10,6 +10,10 @@ const cars = [
 
 const STAFF = { name: "AZoom Staff", email: "staff@azoom.sg", password: "staff123", role: "staff" };
 
+function safe(text) {
+  return text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+}
+
 function weeklyPrice(car) {
   return car.daily * 6;
 }
@@ -62,7 +66,6 @@ function setCurrentUser(user) {
   localStorage.setItem("azoomCurrentUser", JSON.stringify(user));
 }
 
-function logout(homePage) {
+function logout() {
   localStorage.setItem("azoomCurrentUser", "");
-  window.location.href = homePage;
 }

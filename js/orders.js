@@ -31,8 +31,8 @@ function renderOrders() {
   for (let i = bookings.length - 1; i >= 0; i--) {
     const order = bookings[i];
     let damage = `S$${order.damageCost}`;
-    if (order.damageNote !== "") {
-      damage += ` (${order.damageNote})`;
+    if (order.damageNote) {
+      damage += ` (${safe(order.damageNote)})`;
     }
     html += `
       <div class="order">

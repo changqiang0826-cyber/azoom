@@ -3,10 +3,15 @@ document.getElementById("login-form").addEventListener("submit", function (event
 
   const email = document.getElementById("login-email").value.toLowerCase();
   const password = document.getElementById("login-password").value;
+  const authBox = document.getElementById("auth-box");
 
   if (email === STAFF.email && password === STAFF.password) {
     setCurrentUser(STAFF);
-    window.location.href = "admin/index.html";
+    updateNav();
+    authBox.innerHTML = `
+      <p class="hint">Welcome back, AZoom Staff.</p>
+      <a class="btn" href="admin/index.html">Go to Staff Page</a>
+    `;
     return;
   }
 
@@ -17,9 +22,14 @@ document.getElementById("login-form").addEventListener("submit", function (event
   }
 
   setCurrentUser(user);
+  updateNav();
+
+  let nextLink = `<a class="btn" href="orders.html">Go to My Orders</a>`;
   if (localStorage.getItem("azoomSelectedCar")) {
-    window.location.href = "booking.html";
-  } else {
-    window.location.href = "orders.html";
+    nextLink = `<a class="btn" href="booking.html">Continue Booking</a>`;
   }
+  authBox.innerHTML = `
+    <p class="hint">Welcome back, ${safe(user.name)}.</p>
+    ${nextLink}
+  `;
 });
